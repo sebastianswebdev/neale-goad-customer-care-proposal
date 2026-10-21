@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#191b1b">
+  <meta name="description" content="Explore the Neale Goad Customer Care portal demo: vehicle service history, workshop photo updates, upcoming maintenance, comments and repair requests.">
+  <title>My Garage — Neale Goad Customer Care</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+  <script src="portal.js" defer></script>
+</head>
+<body class="portal">
+<a class="skip-link" href="#main">Skip to your garage</a>
+<header class="app-header">
+  <a href="./" class="app-brand" aria-label="Neale Goad Customer Care home"><img src="assets/nga-logo.jpeg" width="78" height="52" alt="Neale Goad Automotive"><span><strong>Customer Care</strong><small>YOUR VEHICLE. YOUR SERVICE STORY.</small></span></a>
+  <div class="role-switch" role="group" aria-label="Demo role"><span>DEMO VIEW</span><button type="button" data-role="customer" aria-pressed="true">Customer</button><button type="button" data-role="workshop" aria-pressed="false">Workshop</button></div>
+</header>
+<div class="demo-banner" id="demo"><span><b>Interactive prototype</b> · Fictional records. Changes stay in this browser; no live workshop messages or bookings.</span><button class="text-button" type="button" id="reset-portal">Reset demo ↻</button></div>
+<div class="app-layout">
+  <aside class="sidebar"><div class="sidebar-account"><span class="account-avatar" aria-hidden="true">AL</span><div><strong id="account-name">Alex’s garage</strong><small id="account-description">Sample customer account</small></div></div><nav aria-label="Customer Care navigation"><button class="nav-button active" data-nav="overview" aria-current="page"><span aria-hidden="true">⌂</span><span id="overview-label">My garage</span></button><button class="nav-button" data-nav="history"><span aria-hidden="true">▤</span><span>Service history</span></button><button class="nav-button" data-nav="requests"><span aria-hidden="true">↔</span><span>Requests & messages</span><span class="count-badge" id="request-count">0</span></button><button class="nav-button" data-nav="workshop" id="post-navigation" hidden><span aria-hidden="true">＋</span><span>Post vehicle update</span></button></nav><div class="sidebar-foot"><p>NEALE GOAD AUTOMOTIVE</p><span>206 Burnbank St<br>Wendouree, Ballarat</span><a href="proposal.html">Read the project proposal ↗</a><a href="https://ballaratcarrepairsandservicing.com.au/" target="_blank" rel="noopener">Visit workshop website ↗</a><button type="button" class="text-button" id="open-help">How to try the demo</button></div></aside>
+  <main class="app-main" id="main">
+    <div class="page-heading" id="page-heading"></div>
+    <section class="vehicle-strip" aria-label="Selected vehicle"><div class="vehicle-art" aria-hidden="true"><svg viewBox="0 0 400 150" fill="none"><path d="M53 98 75 58c5-8 13-13 24-13h158c12 0 22 5 31 13l34 30 28 9c10 3 15 9 15 20v7H35v-12c0-8 6-13 18-14Z" fill="#f1d334" stroke="#191b1b" stroke-width="3"/><path d="m97 53-23 39h214l-34-39H97Z" fill="#fffcef" stroke="#191b1b" stroke-width="3"/><path d="M184 53v39" stroke="#191b1b" stroke-width="3"/><circle cx="108" cy="122" r="23" fill="#191b1b"/><circle cx="108" cy="122" r="11" fill="#d8d8cf"/><circle cx="297" cy="122" r="23" fill="#191b1b"/><circle cx="297" cy="122" r="11" fill="#d8d8cf"/><path d="M38 106h26m267 0h28M199 103h16" stroke="#191b1b" stroke-width="3"/></svg></div><div class="vehicle-details"><p class="eyebrow">YOUR SELECTED VEHICLE</p><h2 id="vehicle-name">Toyota Corolla</h2><div class="vehicle-meta" id="vehicle-meta"></div></div><label class="vehicle-picker">Switch vehicle<select id="vehicle-select" aria-label="Switch vehicle"><option value="corolla">Toyota Corolla · DEMO-01</option><option value="ranger">Ford Ranger · DEMO-02</option></select></label></section>
+    <section class="view-panel" id="view-overview" aria-label="Garage overview"></section>
+    <section class="view-panel" id="view-history" aria-label="Vehicle service history" hidden></section>
+    <section class="view-panel" id="view-requests" aria-label="Requests and messages" hidden></section>
+    <section class="view-panel" id="view-workshop" aria-label="Workshop update composer" hidden></section>
+    <p class="footer-note">Prototype only · Demo role switching is not authentication. A live portal needs private accounts, workshop access controls and a connection to the actual vehicle records.</p>
+  </main>
+</div>
+<div class="toast" role="status" aria-live="polite" id="portal-status"></div>
+
+<dialog class="dialog" id="request-dialog" aria-labelledby="request-title"><div class="dialog-header"><div><p class="eyebrow">ASK YOUR WORKSHOP</p><h2 id="request-title">What can we help with?</h2></div><button type="button" class="icon-button" data-close="request-dialog" aria-label="Close service request">×</button></div><p class="select-context" id="request-context"></p><form id="service-request-form"><div class="field"><label for="request-kind">I’d like to</label><select id="request-kind"><option value="service">Request a service or repair</option><option value="question">Ask a question</option></select></div><div class="field"><label for="request-subject">Service or question</label><input id="request-subject" maxlength="100" placeholder="e.g. Brake noise, air conditioning, next service" required></div><div class="field"><label for="request-description">Tell the workshop a little more</label><textarea id="request-description" rows="4" maxlength="2000" placeholder="Describe what you’ve noticed or what you would like done." required></textarea></div><div class="field-row"><div class="field"><label for="request-date">Preferred date <small>Optional</small></label><input type="date" id="request-date"></div><div class="field"><label for="request-time">Preferred time</label><select id="request-time"><option>Anytime</option><option>Morning</option><option>Afternoon</option></select></div></div><label class="pickup-check"><input id="request-pickup" type="checkbox"><span>Ask about pickup & delivery<small>Within 10 km of Ballarat CBD; staff confirm eligibility and arrangements.</small></span></label><p class="info-note">Your request is not an appointment until the workshop confirms it. In this prototype, it appears only in the demo workshop view.</p><p class="form-error" id="request-error" role="alert"></p><div class="dialog-actions"><button type="submit" class="button primary">Submit demo request <span aria-hidden="true">↗</span></button><button type="button" class="button secondary" data-close="request-dialog">Cancel</button></div></form></dialog>
+
+<dialog class="dialog photo-dialog" id="photo-dialog" aria-labelledby="photo-title"><div class="dialog-header"><h2 id="photo-title">Workshop attachment</h2><button type="button" class="icon-button" data-close="photo-dialog" aria-label="Close photo">×</button></div><img id="full-photo" src="assets/example-workshop.png" alt="Example workshop attachment"><p id="full-photo-caption"></p></dialog>
+
+<dialog class="dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><h2 id="help-title">Try the whole conversation.</h2><button type="button" class="icon-button" data-close="help-dialog" aria-label="Close demo guide">×</button></div><ol class="info-list"><li><strong>Customer:</strong> open a service record, view its photos, and add a question.</li><li><strong>Workshop:</strong> switch the demo view above, reply to the question, or open Post vehicle update.</li><li><strong>Post an update:</strong> record a service date, work carried out, a sample photo and an optional next recommendation.</li><li><strong>Customer:</strong> switch back. The update and reply are in the same vehicle’s history.</li><li><strong>Request work:</strong> ask for a service or repair. Review and reply to it in the workshop view.</li></ol><p class="info-note">Everything is fictional and stored on this browser only. No real customer information should be entered. Reset demo clears this prototype’s records, comments and uploaded photos on this device.</p><button type="button" class="button dark" data-close="help-dialog">Explore my garage ↗</button></dialog>
+<noscript><p class="info-note">Enable JavaScript to explore the interactive portal. You can still read the <a href="proposal.html">project proposal</a>.</p></noscript>
+</body>
+</html>
