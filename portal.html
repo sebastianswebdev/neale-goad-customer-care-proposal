@@ -5,41 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#191b1b">
-  <meta name="description" content="Explore the Neale Goad Customer Care portal demo: vehicle service history, workshop photo updates, upcoming maintenance, comments and repair requests.">
-  <title>My Garage — Neale Goad Customer Care</title>
+  <meta name="description" content="Neale Goad Customer Care demo: see your current service, follow its progress, chat with your workshop and revisit your service history.">
+  <title>My Vehicle — Neale Goad Customer Care</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="portal.css?v=20261021-simple2">
-  <script src="portal.js?v=20261021-simple2" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css?v=20261021-jobs2">
+  <script src="portal.js?v=20261021-jobs2" defer></script>
 </head>
 <body class="portal">
-<a class="skip-link" href="#main">Skip to your garage</a>
+<a class="skip-link" href="#main">Skip to My Vehicle</a>
 <header class="app-header">
-  <a href="./" class="app-brand" aria-label="Neale Goad Customer Care home"><img src="assets/nga-logo.jpeg" width="78" height="52" alt="Neale Goad Automotive"><span><strong>Customer Care</strong></span></a>
-  <div class="role-switch" role="group" aria-label="Demo role"><span>Demo</span><button type="button" data-role="customer" aria-pressed="true">Customer</button><button type="button" data-role="workshop" aria-pressed="false">Workshop</button></div>
+  <a href="./" class="app-brand" aria-label="Neale Goad Customer Care home"><img src="assets/nga-logo.jpeg" width="78" height="52" alt="Neale Goad Automotive"><strong>Customer Care</strong></a>
+  <div class="role-switch" role="group" aria-label="Demo role"><span>Demo view</span><button type="button" data-role="customer" aria-pressed="true">Customer</button><button type="button" data-role="workshop" aria-pressed="false">Workshop</button></div>
 </header>
-<div class="demo-banner" id="demo"><span><b>Demo</b> · Sample data only. Nothing is sent to the workshop.</span><button class="text-button" type="button" id="reset-portal">Reset demo ↻</button></div>
+<div class="demo-banner" id="demo"><span><b>Demo</b> · Sample records. Messages and changes stay on this device.</span><button class="text-button" type="button" id="reset-portal">Reset demo ↻</button></div>
 <div class="app-layout">
-  <aside class="sidebar"><div class="sidebar-account"><span class="account-avatar" aria-hidden="true">AL</span><div><strong id="account-name">Alex’s garage</strong><small id="account-description">Customer view</small></div></div><nav aria-label="Customer Care navigation"><button class="nav-button active" data-nav="overview" aria-current="page"><span aria-hidden="true">⌂</span><span id="overview-label">My garage</span></button><button class="nav-button" data-nav="history"><span aria-hidden="true">▤</span><span>Service history</span></button><button class="nav-button" data-nav="requests"><span aria-hidden="true">↔</span><span>Messages</span><span class="count-badge" id="request-count">0</span></button><button class="nav-button" data-nav="workshop" id="post-navigation" hidden><span aria-hidden="true">＋</span><span>Add update</span></button></nav><div class="sidebar-foot"><p>NEALE GOAD AUTOMOTIVE</p><span>206 Burnbank St<br>Wendouree, Ballarat</span><a href="proposal.html">Project proposal ↗</a><a href="https://ballaratcarrepairsandservicing.com.au/" target="_blank" rel="noopener">Workshop website ↗</a><button type="button" class="text-button" id="open-help">About this demo</button></div></aside>
+  <aside class="sidebar">
+    <div class="sidebar-account"><span class="account-avatar" aria-hidden="true">AL</span><div><strong id="account-name">Alex’s vehicles</strong><small id="account-description">Customer view</small></div></div>
+    <nav aria-label="Customer Care navigation">
+      <button type="button" class="nav-button active" data-nav="overview" aria-current="page"><span aria-hidden="true">⌂</span><span id="overview-label">My Vehicle</span></button>
+      <button type="button" class="nav-button" data-nav="history"><span aria-hidden="true">▤</span><span>Service History</span><span class="count-badge" id="history-count" hidden>0</span></button>
+    </nav>
+    <div class="sidebar-foot"><p>NEALE GOAD AUTOMOTIVE</p><span>206 Burnbank St<br>Wendouree, Ballarat</span><a href="proposal.html">Project proposal ↗</a><a href="https://ballaratcarrepairsandservicing.com.au/" target="_blank" rel="noopener">Workshop website ↗</a><button type="button" class="text-button" id="open-help">About this demo</button></div>
+  </aside>
   <main class="app-main" id="main">
     <div class="page-heading" id="page-heading"></div>
-    <section class="vehicle-strip" aria-label="Selected vehicle"><div class="vehicle-details"><h2 id="vehicle-name">Toyota Corolla</h2><div class="vehicle-meta" id="vehicle-meta"></div></div><label class="vehicle-picker">Vehicle<select id="vehicle-select" aria-label="Switch vehicle"><option value="corolla">Toyota Corolla · DEMO-01</option><option value="ranger">Ford Ranger · DEMO-02</option></select></label></section>
-    <section class="view-panel" id="view-overview" aria-label="Garage overview"></section>
-    <section class="view-panel" id="view-history" aria-label="Vehicle service history" hidden></section>
-    <section class="view-panel" id="view-requests" aria-label="Requests and messages" hidden></section>
-    <section class="view-panel" id="view-workshop" aria-label="Workshop update composer" hidden></section>
-    <p class="footer-note">Demo changes are saved on this device. Use sample information only.</p>
+    <section class="vehicle-strip" aria-label="My linked vehicle"><div class="vehicle-details"><h2 id="vehicle-name">Toyota Corolla</h2><p class="vehicle-meta" id="vehicle-meta">2018 · DEMO-01</p></div><label class="vehicle-picker">My vehicles<select id="vehicle-select" aria-label="Choose my vehicle"><option value="corolla">Toyota Corolla · DEMO-01</option><option value="ranger">Ford Ranger · DEMO-02</option></select></label></section>
+    <section class="view-panel" id="view-overview" aria-label="Current service"></section>
+    <section class="view-panel" id="view-history" aria-label="Service history" hidden></section>
+    <p class="footer-note">Your workshop links your vehicle and updates your service. This is a demo with fictional records.</p>
   </main>
 </div>
 <div class="toast" role="status" aria-live="polite" id="portal-status"></div>
-
-<dialog class="dialog" id="request-dialog" aria-labelledby="request-title"><div class="dialog-header"><div><h2 id="request-title">Ask the workshop</h2></div><button type="button" class="icon-button" data-close="request-dialog" aria-label="Close service request">×</button></div><p class="select-context" id="request-context"></p><form id="service-request-form"><div class="field"><label for="request-kind">I’d like to</label><select id="request-kind"><option value="service">Request a service or repair</option><option value="question">Ask a question</option></select></div><div class="field"><label for="request-subject">Service or question</label><input id="request-subject" maxlength="100" placeholder="e.g. Brake noise, air conditioning, next service" required></div><div class="field"><label for="request-description">Your message</label><textarea id="request-description" rows="3" maxlength="2000" placeholder="Describe what you’ve noticed or what you would like done." required></textarea></div><details class="optional-details"><summary>Preferred visit & pickup <span>Optional</span></summary><div class="field-row"><div class="field"><label for="request-date">Preferred date <small>Optional</small></label><input type="date" id="request-date"></div><div class="field"><label for="request-time">Preferred time</label><select id="request-time"><option>Anytime</option><option>Morning</option><option>Afternoon</option></select></div></div><label class="pickup-check"><input id="request-pickup" type="checkbox"><span>Ask about pickup & delivery<small>Within 10 km of Ballarat CBD; subject to confirmation.</small></span></label></details><p class="info-note">A booking is confirmed only when the workshop agrees on a date and time.</p><p class="form-error" id="request-error" role="alert"></p><div class="dialog-actions"><button type="submit" class="button primary">Send request <span aria-hidden="true">↗</span></button><button type="button" class="button secondary" data-close="request-dialog">Cancel</button></div></form></dialog>
-
-<dialog class="dialog photo-dialog" id="photo-dialog" aria-labelledby="photo-title"><div class="dialog-header"><h2 id="photo-title">Workshop attachment</h2><button type="button" class="icon-button" data-close="photo-dialog" aria-label="Close photo">×</button></div><img id="full-photo" src="assets/example-workshop.png" alt="Example workshop attachment"><p id="full-photo-caption"></p></dialog>
-
-<dialog class="dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><h2 id="help-title">About this demo</h2><button type="button" class="icon-button" data-close="help-dialog" aria-label="Close demo guide">×</button></div><ol class="info-list"><li>Open a visit to see the work and photos, or leave a comment.</li><li>Ask the workshop to request a service or repair.</li><li>Switch to Workshop to add an update or reply.</li></ol><p class="info-note">This is a public prototype with fictional records. Updates stay in this browser and are not shared or sent. The demo roles are not private accounts. Reset demo clears your sample changes.</p><button type="button" class="button dark" data-close="help-dialog">Got it</button></dialog>
-<noscript><p class="info-note">Enable JavaScript to explore the interactive portal. You can still read the <a href="proposal.html">project proposal</a>.</p></noscript>
+<dialog class="dialog" id="request-dialog" aria-labelledby="request-title">
+  <div class="dialog-header"><h2 id="request-title">Request a service</h2><button type="button" class="icon-button" data-close="request-dialog" aria-label="Close request">×</button></div>
+  <p class="select-context" id="request-context"></p>
+  <form id="service-request-form">
+    <div class="field"><label for="request-subject">What would you like done?</label><input id="request-subject" maxlength="100" required></div>
+    <div class="field"><label for="request-description">Tell us more</label><textarea id="request-description" rows="3" maxlength="2000" placeholder="Describe the problem or the work you would like." required></textarea></div>
+    <details class="optional-details" id="visit-preference"><summary>Preferred visit date <span>Optional</span></summary><div class="field"><label for="request-date">Preferred date</label><input type="date" id="request-date"></div></details>
+    <p class="info-note" id="request-explanation"></p><p class="form-error" id="request-error" role="alert"></p>
+    <div class="dialog-actions"><button type="submit" class="button primary" id="send-request">Send request</button><button type="button" class="button secondary" data-close="request-dialog">Cancel</button></div>
+  </form>
+</dialog>
+<dialog class="dialog" id="vehicle-dialog" aria-labelledby="vehicle-title">
+  <div class="dialog-header"><h2 id="vehicle-title">Link a vehicle</h2><button type="button" class="icon-button" data-close="vehicle-dialog" aria-label="Close vehicle form">×</button></div>
+  <p class="select-context">Workshop → Alex’s sample account</p>
+  <form id="vehicle-form">
+    <div class="field"><label for="new-vehicle-name">Make & model</label><input id="new-vehicle-name" maxlength="70" placeholder="e.g. Mazda 3" required></div>
+    <div class="field-row"><div class="field"><label for="new-vehicle-year">Year</label><input id="new-vehicle-year" type="number" min="1900" max="2100" step="1" placeholder="2020" required></div><div class="field"><label for="new-vehicle-rego">Sample registration</label><input id="new-vehicle-rego" maxlength="15" placeholder="DEMO-03" required></div></div>
+    <p class="info-note">In the live app, staff would verify the customer and vehicle before linking existing workshop records.</p><p class="form-error" id="vehicle-error" role="alert"></p>
+    <div class="dialog-actions"><button type="submit" class="button primary">Link to Alex</button><button type="button" class="button secondary" data-close="vehicle-dialog">Cancel</button></div>
+  </form>
+</dialog>
+<dialog class="dialog photo-dialog" id="photo-dialog" aria-labelledby="photo-title"><div class="dialog-header"><h2 id="photo-title">Workshop photo</h2><button type="button" class="icon-button" data-close="photo-dialog" aria-label="Close photo">×</button></div><img id="full-photo" src="assets/example-workshop.png" alt="Illustrative workshop attachment"><p id="full-photo-caption"></p></dialog>
+<dialog class="dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><h2 id="help-title">A simple service conversation</h2><button type="button" class="icon-button" data-close="help-dialog" aria-label="Close demo guide">×</button></div><ol class="info-list"><li><strong>My Vehicle:</strong> see the current service and progress, chat, or request extra work.</li><li><strong>Workshop view:</strong> link a sample vehicle, update progress, post photos and quote requested extras.</li><li><strong>Service History:</strong> completed jobs keep the same chat and photos. Ask a question or request a follow-up.</li></ol><p class="info-note">Fictional demo only. Roles are not secure accounts. Changes, messages, photo uploads and quote decisions stay in this browser; nothing is sent, charged or booked. Use sample information only.</p><button type="button" class="button dark" data-close="help-dialog">Got it</button></dialog>
+<noscript><p class="info-note">Enable JavaScript to try the demo, or read the <a href="proposal.html">project proposal</a>.</p></noscript>
 </body>
 </html>
