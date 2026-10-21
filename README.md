@@ -1,6 +1,6 @@
 # Neale Goad Customer Care — customer portal prototype
 
-The main website now opens directly into an interactive customer garage. The original presentation and discovery checklist remain in `proposal.html`.
+The main website opens directly into a simplified customer garage. Last service and Next due appear first; service notes, photos and comments open on demand. Optional workshop fields and visit preferences are collapsed to keep forms short. The original presentation and discovery checklist remain in `proposal.html`.
 
 ## Try the portal
 
